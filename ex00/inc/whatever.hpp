@@ -1,10 +1,35 @@
 #ifndef WHATEVER_HPP
 #define WHATEVER_HPP
 
+#include <string>
+
+struct Struct {
+    int a;
+    std::string s;
+};
+
+class Class {
+  private:
+    const int _x;
+
+    Class(const Class &other);
+    Class &operator=(const Class &other);
+
+  public:
+    Class(const int x) : _x(x) {}
+    ~Class() {}
+
+    bool operator<(const Class &other) const { return _x < other._x; }
+    bool operator>(const Class &other) const { return _x > other._x; }
+    bool operator>=(const Class &other) const { return _x >= other._x; }
+    bool operator<=(const Class &other) const { return _x <= other._x; }
+    bool operator==(const Class &other) const { return _x == other._x; }
+};
+
 namespace mod {
 
 template <typename T> void swap(T &a, T &b) {
-    const T &temp = a;
+    const T temp = a;
     a = b;
     b = temp;
 }
