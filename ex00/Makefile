@@ -6,7 +6,7 @@ INC_DIR = inc
 
 BLOCK_SIZE=$(shell stat -fc %s .)
 
-SRCS = 	main.cpp
+SRCS = 	main.cpp whatever.cpp
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 

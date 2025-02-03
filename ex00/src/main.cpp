@@ -1,6 +1,6 @@
-#include "whatever.hpp"
 #include <cassert>
 #include <string>
+#include <whatever.hpp>
 
 void testSwapString() {
     std::string a = "Hello", b = "World";

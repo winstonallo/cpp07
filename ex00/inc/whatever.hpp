@@ -16,14 +16,14 @@ class Class {
     Class &operator=(const Class &other);
 
   public:
-    Class(const int x) : _x(x) {}
-    ~Class() {}
+    Class(const int x);
+    ~Class();
 
-    bool operator<(const Class &other) const { return _x < other._x; }
-    bool operator>(const Class &other) const { return _x > other._x; }
-    bool operator>=(const Class &other) const { return _x >= other._x; }
-    bool operator<=(const Class &other) const { return _x <= other._x; }
-    bool operator==(const Class &other) const { return _x == other._x; }
+    bool operator<(const Class &other) const;
+    bool operator>(const Class &other) const;
+    bool operator>=(const Class &other) const;
+    bool operator<=(const Class &other) const;
+    bool operator==(const Class &other) const;
 };
 
 namespace mod {
