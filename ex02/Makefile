@@ -1,32 +1,26 @@
-NAME = ft_ssl
+NAME = ex.bin
 
 OBJ_DIR = build
 SRC_DIR = src
 INC_DIR = inc
-LIBFT_DIR = libft
 
 BLOCK_SIZE=$(shell stat -fc %s .)
 
-SRCS = 	main.cpp \
+SRCS = 	main.cpp
 
-OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 
 HEADERS = $(wildcard $(INC_DIR)/*.h) $(wildcard $(LIBFT_DIR)/src/**/*.h)
 
-LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
-
 CC = cc
-CFLAGS = -std=c++98 -DFS_BLOCK_SIZE=${BLOCK_SIZE} -Wall -Wextra -Werror \
-	-I$(INC_DIR) 
-LDFLAGS = $(LIBFT_FLAGS) 
+CFLAGS = -std=c++98 -DFS_BLOCK_SIZE=${BLOCK_SIZE} -Wall -Wextra -Werror -I$(INC_DIR) 
 
 all: $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS) | $(OBJ_DIR)
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -35,11 +29,9 @@ $(OBJ_DIR):
 
 clean:
 	rm -rf $(OBJ_DIR)
-	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
